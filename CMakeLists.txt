@@ -3,11 +3,8 @@ project(imgregist VERSION 0.1.0)
 
 add_subdirectory(third_party)
 
-include(CTest)
-enable_testing()
-
-add_library(imgregist imgregist.cpp)
-
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
-include(CPack)
+
+add_subdirectory(src)
+add_subdirectory(tests)
