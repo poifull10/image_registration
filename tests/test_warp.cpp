@@ -30,3 +30,12 @@ TEST_F(WarperTester, test_warp_x){
     for (int i=0; i<2; i++)
         EXPECT_NEAR(expected(i), warp_x(x)(i), 1e-10);
 }
+
+TEST_F(WarperTester, test_warp_x_inv){
+    Vector2f x;
+    x << 2, 3;
+    p << 1, 2, 3, 4, 5, 6;
+    auto actual = warp_x_inv(warp_x(x));
+    for (int i=0; i<2; i++)
+        EXPECT_NEAR(x(i), actual(i), 1e-10);
+}

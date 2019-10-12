@@ -12,6 +12,16 @@ const Vector2f Warper::warp_x(const Vector2f& x)
     return ret;
 }
 
+const Vector2f Warper::warp_x_inv(const Vector2f& x)
+{
+    Vector2f ret;
+    float _x = x(0), _y = x(1);
+    float _lower = (1+p(0))*(1+p(3)) - p(1)*p(2);
+    ret <<  ((1+p(3)) * _x - p(2) * _y - (1+p(3))*p(4)+p(2)*p(5))/_lower,
+            (p(1)*_x - (1+p(0))*_y - p(1)*p(4) + (1+p(0))*p(5))/(-_lower);
+    return ret;
+}
+
 void Warper::warp(const ImgPtr& img) 
 {
     ;
