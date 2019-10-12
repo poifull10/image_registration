@@ -1,0 +1,2 @@
+add_subdirectory(dlib)
+add_subdirectory(googletest)
