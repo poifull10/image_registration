@@ -1,6 +1,6 @@
 #pragma once
 
-#include "img_loader.h"
+#include <image_registration.h>
 #include <Eigen/Core>
 #include <vector>
 
