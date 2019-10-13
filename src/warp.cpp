@@ -22,15 +22,30 @@ const Vector2f Warper::warp_x_inv(const Vector2f& x)
     return ret;
 }
 
-void Warper::warp(const ImgPtr& img) 
-{
-    ;
-}
-
-
 const MatrixXf Warper::to_mat() 
 {
     MatrixXf m(2, 3);
     m << 1+p(0), p(2), p(4), p(1), 1+p(3), p(5);
     return m;
+}
+
+const float Warper::bilinear_interpolation(const Img& img, const Vector2f& v)
+{
+    float x = v(0);
+    float y = v(1);
+    int floor_x = std::floor(v(0));
+    int floor_y = std::floor(v(1));
+    float pix00, pix01, pix10, pix11;
+    if (floor_x < 0 || floor_y < 0) return 0;
+    if (floor_x + 1 >= img.width() ||
+        floor_y + 1 >= img.height() ) return 0;
+
+    pix00 = img(floor_x, floor_y);
+    pix10 = img(floor_x + 1, floor_y);
+    pix01 = img(floor_x, floor_y + 1);
+    pix11 = img(floor_x + 1, floor_y + 1);    
+    
+    return (floor_x + 1 - x)*((floor_y + 1 - y) * pix00 + (y - floor_y) * pix01) + 
+            (x - floor_x) * ((floor_y+1-y) * pix10 + (y - floor_y) * pix11);
+        
 }
