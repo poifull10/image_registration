@@ -1,0 +1,6 @@
+set(CMAKE_CXX_STANDARD 17)
+include_directories(${CMAKE_SOURCE_DIR}/include)
+include_directories(${CMAKE_SOURCE_DIR}/third_party/eigen)
+include_directories(${CMAKE_SOURCE_DIR}/third_party/cimg)
+add_executable(lk ex_lucas_kanade.cpp)
+target_link_libraries(lk imgregist)

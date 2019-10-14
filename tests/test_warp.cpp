@@ -75,12 +75,12 @@ TEST_F(WarperTester, test_bilinear_interpolation){
 
 TEST_F(WarperTester, test_warp){
     imr::ImgLoader img_loader(std::string("../tests/sample/lena.png"));
-    p(0) = 0.2;
-    p(1) = -0.3;
-    p(2) = 0.1;
-    p(3) = -0.2;
-    p(4) = 100;
-    p(5) = -30;
+    p(0) = 0.01;
+    p(1) = 0.01;
+    p(2) = 0.01;
+    p(3) = -0.01;
+    p(4) = 0;
+    p(5) = 0;
     auto img = warp(img_loader.get());
     img.save("../tests/sample/warped.png");
 }

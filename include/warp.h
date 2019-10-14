@@ -24,6 +24,12 @@ namespace imr {
             return _img;
         }
 
+        void update(const VectorXf& delta){
+            p += delta;
+        }
+
+        const VectorXf get_p() const {return p;}
+
         protected:
             VectorXf p;
             const MatrixXf to_mat();
