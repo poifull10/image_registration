@@ -1,1 +1,4 @@
 build/
+tests/sample/grad.png
+tests/sample/output.png
+tests/sample/warped.png

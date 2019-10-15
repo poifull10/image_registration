@@ -39,3 +39,48 @@ TEST_F(WarperTester, test_warp_x_inv){
     for (int i=0; i<2; i++)
         EXPECT_NEAR(x(i), actual(i), 1e-10);
 }
+
+TEST_F(WarperTester, test_bilinear_interpolation){
+    imr::Img img(2, 2);
+    img(0, 0) = 1;
+    img(1, 0) = 2;
+    img(0, 1) = 3;
+    img(1, 1) = 4;
+    Eigen::Vector2f x;
+    x << -0.1, 2;
+    auto actual = bilinear_interpolation(img, x);
+    float expected = 0;
+    EXPECT_NEAR(expected, actual, 1e-10);
+
+    x << 0.4, -0.2;
+    actual = bilinear_interpolation(img, x);
+    expected = 0;
+    EXPECT_NEAR(expected, actual, 1e-10);
+
+    x << 1.1, 0.2;
+    actual = bilinear_interpolation(img, x);
+    expected = 0;
+    EXPECT_NEAR(expected, actual, 1e-10);
+
+    x << 0.2, 1.2;
+    actual = bilinear_interpolation(img, x);
+    expected = 0;
+    EXPECT_NEAR(expected, actual, 1e-10);
+
+    x << 0.5, 0.5;
+    actual = bilinear_interpolation(img, x);
+    expected = 2.5;
+    EXPECT_NEAR(expected, actual, 1e-10);
+}
+
+TEST_F(WarperTester, test_warp){
+    imr::ImgLoader img_loader(std::string("../tests/sample/lena.png"));
+    p(0) = 0.03;
+    p(1) = 0.03;
+    p(2) = 0.03;
+    p(3) = -0.03;
+    p(4) = 0;
+    p(5) = 0;
+    auto img = warp(img_loader.get());
+    img.save("../tests/sample/warped.png");
+}

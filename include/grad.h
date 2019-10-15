@@ -5,7 +5,7 @@ namespace imr {
     enum class GradDir : int {
         X, Y
     };
-    const Img grad(const Img& img, GradDir dir){
+    const CImg<float> grad(const Img& img, GradDir dir){
         CImg<float> _img(img.width(), img.height());
         
         if (GradDir::X == dir)
